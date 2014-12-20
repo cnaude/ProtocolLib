@@ -57,9 +57,10 @@ public class PlayerInfoData {
 				if (constructor == null) {
 					try {
 						constructor = MinecraftReflection.getPlayerInfoDataClass().getConstructor(
-								int.class,
-								EnumWrappers.getGameModeClass(),
+                                                                MinecraftReflection.getPacketPlayOutPlayerInfoClass(),
 								MinecraftReflection.getGameProfileClass(),
+                                                                int.class,
+								EnumWrappers.getGameModeClass(),
 								MinecraftReflection.getIChatBaseComponentClass()
 						);
 					} catch (Exception e) {
@@ -70,14 +71,15 @@ public class PlayerInfoData {
 				// Construct the underlying PlayerInfoData
 				try {
 					Object result = constructor.newInstance(
+                                                        null,
+                                                        specific.profile.handle,
 							specific.ping,
 							EnumWrappers.getGameModeConverter().getGeneric(EnumWrappers.getGameModeClass(), specific.gameMode),
-							specific.profile.handle,
 							specific.displayName.handle
 					);
 					return result;
 				} catch (Exception e) {
-					throw new RuntimeException("Cannot construct BlockPosition.", e);
+					throw new RuntimeException("Cannot construct PlayerInfoData.", e);
 				}
 			}
 
