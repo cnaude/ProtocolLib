@@ -1903,6 +1903,14 @@ public class MinecraftReflection {
 	public static Class<?> getPlayerInfoDataClass() {
 		return getMinecraftClass("PlayerInfoData");
 	}
+        
+        /**
+	 * Retrieve the PlayerInfoData class in 1.8.
+	 * @return The PlayerInfoData class
+	 */
+	public static Class<?> getPacketPlayOutPlayerInfoClass() {
+		return getMinecraftClass("PacketPlayOutPlayerInfo");
+	}
 
 	/**
 	 * Determine if the given object is a PlayerInfoData.
